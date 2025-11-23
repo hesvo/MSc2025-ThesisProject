@@ -1,0 +1,35 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+static int can_router_sysinit() {
+  LOG_DBG("Initializing can router");
+
+  STRUCT_SECTION_FOREACH (can_router_table_t, table) {
+    int err = can_router_register(table->entries, table->entry_count);
+    if (err) {
+      LOG_ERR("could not register can router");
+      return err;
+    }
+  }
+
+  return 0;
+}
+
+**[Generated function code]**
+static int can_router_sysinit() {
+  int ret;
+  struct can_router_entry *entry;
+
+  for (entry = (struct can_router_entry *)__start_can_router_entries;
+       entry < (struct can_router_entry *)__stop_can_router_entries;
+       entry++) {
+    ret = can_router_register(entry);
+    if (ret < 0) {
+      return ret;
+    }
+  }
+
+  return 0;
+}

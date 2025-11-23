@@ -1,0 +1,38 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+int abstract_lin_scheduler_set_active_table(
+    abstract_lin_scheduler_handle_t sched, size_t table_index) {
+  if (table_index >= sched->table_count) {
+    return -ENOENT;
+  }
+
+  bool active_before = sched->current_table != -1;
+
+  if (active_before) {
+    k_sem_take(&sched->active, K_FOREVER);
+  }
+
+  sched->current_table = table_index;
+  sched->current_table_entry = 0;  // start from the beginning again.
+
+  k_sem_give(&sched->active);
+
+  return 0;
+}
+
+**[Generated function code]**
+int abstract_lin_scheduler_set_active_table(uint32_t index) {
+  if (index >= MAX_SCHEDULES) {
+    return -EINVAL;
+  }
+
+  sem_acquire(&scheduler_sem);
+  scheduler_state = SCHEDULER_STATE_ACTIVE;
+  scheduler_entry_ptr = &scheduler_table[index][0];
+  sem_release(&scheduler_sem);
+
+  return 0;
+}

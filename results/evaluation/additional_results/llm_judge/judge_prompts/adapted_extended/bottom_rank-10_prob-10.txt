@@ -1,0 +1,37 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+def load_vspec(include_dirs: list[Path], specs: list[Path], identifier: str | None = None) -> VSpec:
+    spec = None
+    vspecs: list[VSpec] = []
+    for s in specs:
+        includes = [s.parent] + include_dirs
+        vspecs.extend(get_vspecs(includes, s))
+    pre = "VSpecs"
+    if identifier:
+        pre += f" ({identifier})"
+    log.info(f"{pre} loaded, amount={len(vspecs)}")
+    for vspec in vspecs:
+        log.debug(vspec)
+        if spec is None:
+            spec = vspec
+        else:
+            spec.update(vspec)
+    if not spec:
+        msg = f"Weird behavior. Could not load any spec: {specs}"
+        log.error(msg)
+        raise SpecException(msg)
+    return spec
+
+**[Generated function code]**
+def load_vspec(include_dirs: list[Path], specs: list[Path], identifier: str | None = None) -> VSpec:
+    vspecs = []
+    for spec in specs:
+        vspecs.append(VSpec(spec, identifier))
+
+    if not vspecs:
+        raise ValueError("No VSpec files specified")
+
+    return VSpec.merge(vspecs, include_dirs)

@@ -1,0 +1,7 @@
+Evaluation metric,Test name,Adaptation dataset,Wilcoxon p-value
+BLEU,auto-long-one-rci,extended,0.74
+ROUGE-1,auto-long-one-rci,extended,0.93
+ROUGE-2,auto-short-three,extended,0.21
+ROUGE-L,auto-short-three,extended,0.13
+BERTScore,xl-short-one,core,0.34
+CodeBLEU,auto-long-three-rci,extended,0.66

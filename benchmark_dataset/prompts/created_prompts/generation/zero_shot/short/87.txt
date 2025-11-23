@@ -1,0 +1,12 @@
+Your task is to implement a C function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related C function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"A LIN callback that dequeues a frame for transmission and executes its completion callback"
+
+**Code:**
+static bool lin_outgoing_cb(struct lin_frame *frame, void *user_data) {

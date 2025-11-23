@@ -1,0 +1,531 @@
+category,rank,language,id,reference,generated_rci,codebleu
+top,1,c,81,"static void send_transfer_data_response(uint8_t block_sequence_counter) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_TRANSFER_DATA + 0x40;
+
+  uint8_t tx_data[] = {positive_sid, block_sequence_counter};
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","static void send_transfer_data_response(uint8_t block_sequence_counter) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_TRANSFER_DATA + 0x40;
+  uint8_t tx_data[] = {positive_sid, block_sequence_counter};
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",100.0
+top,2,c,82,"static void send_routine_control_result(uint16_t routine_id, uint8_t result) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_ROUTINE_CONTROL + 0x40;
+
+  uint8_t tx_data[] = {positive_sid, 0x1, (routine_id >> 8) & 0xFF,
+                       routine_id & 0xFF, result};
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","static void send_routine_control_result(uint16_t routine_id, uint8_t result) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_ROUTINE_CONTROL_RESULT + 0x40;
+  uint8_t tx_data[] = {
+    positive_sid,
+    (routine_id >> 8) & 0xFF,
+    routine_id & 0xFF,
+    result,
+  };
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",87.89087447002811
+top,3,cpp,71,"void DBusProxyBase::addSignalStateHandler(
+            std::shared_ptr<DBusProxyConnection::DBusSignalHandler> _handler,
+            const uint32_t _subscription) {
+    connection_->addSignalStateHandler(_handler, _subscription);
+}","void DBusProxyBase::addSignalStateHandler(std::shared_ptr<DBusProxyConnection::DBusSignalHandler> _handler, const uint32_t _subscription) {
+    connection_->addSignalStateHandler(_handler, _subscription);
+}",85.57023337969444
+top,4,python,11,"def deep_update(base: dict[str, Any], update: dict[str, Any]) -> None:
+    for key, value in update.items():
+        if isinstance(value, dict):
+            if key in base and isinstance(base[key], dict):
+                deep_update(base[key], value)
+            else:
+                base[key] = value
+        else:
+            base[key] = value","def deep_update(base: dict[str, Any], update: dict[str, Any]) -> None:
+    for key, value in update.items():
+        if key in base and isinstance(base[key], dict) and isinstance(value, dict):
+            deep_update(base[key], value)
+        else:
+            base[key] = value",79.6946655476183
+top,5,java,35,"private static void selectMediaSourceAndFinish(Context context, ComponentName componentName,
+        CarMediaManager carMediaManager) {
+    try {
+        carMediaManager.setMediaSource(componentName, CarMediaManager.MEDIA_SOURCE_MODE_BROWSE);
+        if (context instanceof Activity) {
+            ((Activity) context).finish();
+        }
+    } catch (CarNotConnectedException e) {
+        Log.e(TAG, ""Car not connected"", e);
+    }
+}","private static void selectMediaSourceAndFinish(Context context, ComponentName componentName, CarMediaManager carMediaManager) {
+    try {
+        carMediaManager.selectMediaSource(componentName);
+        if (context instanceof Activity) {
+            ((Activity) context).finish();
+        }
+    } catch (CarNotConnectedException e) {
+        Log.e(""CarMedia"", ""Car service unavailable"", e);
+    }
+}",75.18713502777621
+top,6,java,47,"public void onCallAdded(Call call) {
+    if (call != null) {
+        call.registerCallback(mCallback);
+    }
+}","public void onCallAdded(Call call) {
+    if (call != null) {
+        call.registerCallback(this);
+    }
+}",74.36357747171822
+top,7,c,85,"static inline uint8_t map_from_can_id(uint32_t can_id) {
+  for (int i = 0; i < TRANSLATABLE_ADDRESSES_LEN; i++) {
+    if (id_mapping[i] == can_id) {
+      return i;
+    }
+  }
+
+  return 0xff;
+}","static inline uint8_t map_from_can_id(uint32_t can_id) {
+  for (uint8_t i = 0; i < ARRAY_SIZE(id_mapping); ++i) {
+    if (id_mapping[i].can_id == can_id) {
+      return i;
+    }
+  }
+  return 0xff;
+}",73.13873539564125
+top,8,c,78,"void send_positive_reset_response(uint8_t reset_type) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_ECU_RESET + 0x40;
+
+  uint8_t tx_data[] = {positive_sid, reset_type};
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","void send_positive_reset_response(uint8_t reset_type) {
+  int ret;
+  uint8_t tx_data[] = {UDS_SID_ECU_RESET + 0x40, reset_type};
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",73.05407078685752
+top,9,python,4,"def get_type(cls, datatype: str) -> tuple[str, Callable, list[str]] | None:
+        for t in cls.types:
+            if datatype == t[0]:
+                return t
+        return None","def get_type(cls, datatype: str) -> tuple[str, Callable, list[str]] | None:
+    for type_def in cls.types:
+        if type_def[0] == datatype:
+            return type_def
+    return None",72.51558048642302
+top,10,c,83,"static void send_transer_exit_positive_response() {
+  int ret;
+  uint8_t positive_sid = UDS_SID_REQUEST_TRANSFER_EXIT + 0x40;
+
+  uint8_t tx_data[] = {positive_sid};
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","static void send_transer_exit_positive_response() {
+  int ret;
+  uint8_t tx_data[] = {UDS_SID_TRANSFER_EXIT + 0x40};
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",71.45770639096172
+bottom,1,java,38,"private Intent getMapsIntent() {
+    Intent defaultIntent =
+            Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_MAPS);
+    PackageManager pm = getPackageManager();
+    ComponentName defaultActivity = defaultIntent.resolveActivity(pm);
+
+    for (String intentUri : getResources().getStringArray(
+            R.array.config_homeCardPreferredMapActivities)) {
+        Intent preferredIntent;
+        try {
+            preferredIntent = Intent.parseUri(intentUri, Intent.URI_ANDROID_APP_SCHEME);
+        } catch (URISyntaxException se) {
+            Log.w(TAG, ""Invalid intent URI in config_homeCardPreferredMapActivities"", se);
+            continue;
+        }
+
+        if (defaultActivity != null && !defaultActivity.getPackageName().equals(
+                preferredIntent.getPackage())) {
+            continue;
+        }
+
+        if (preferredIntent.resolveActivityInfo(pm, /* flags= */ 0) != null) {
+            return preferredIntent;
+        }
+    }
+    return defaultIntent;
+}","private Intent getMapsIntent() {
+        Intent mapsIntent = null;
+        if (mResolvableMapIntents != null) {
+            for (Intent intent : mResolvableMapIntents) {
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    mapsIntent = intent;
+                    break;
+                }
+            }
+        }
+        if (mapsIntent == null) {
+            mapsIntent = new Intent(Intent.ACTION_VIEW);
+        }
+        return mapsIntent;
+    }",13.160540038972094
+bottom,2,cpp,62,"void DBusConnection::handleSignalStates() {
+    std::map<std::shared_ptr<DBusProxyConnection::DBusSignalHandler>, std::set<uint32_t>> tmpHandlers;
+    {
+        std::lock_guard<std::mutex> itsLock(signalStateHandlersMutex_);
+        tmpHandlers = signalStateHandlers_;
+    }
+    for (auto itsHandler : tmpHandlers) {
+        for (uint32_t tag : itsHandler.second) {
+            itsHandler.first->onSpecificError(CommonAPI::CallStatus::SUCCESS, tag);
+        }
+    }
+}","void DBusConnection::handleSignalStates() {
+    std::lock_guard<std::mutex> lock(signalMutex_);
+    for (auto& signalHandler : signalHandlers_) {
+        signalHandler.onSpecificError(SUCCESS);
+    }
+}",16.723385033195754
+bottom,3,cpp,75,"bool DBusObjectManager::addToRegisteredObjectsTable(DBusInterfaceHandlerPath ifpath, std::shared_ptr<DBusInterfaceHandler> handler) {
+    auto handlerRecord = dbusRegisteredObjectsTable_.find(ifpath);
+    if (handlerRecord == dbusRegisteredObjectsTable_.end()) {
+        dbusRegisteredObjectsTable_.insert({
+            ifpath,
+            std::vector<std::shared_ptr<DBusInterfaceHandler>>({handler})
+        });
+    }
+    else {
+        std::vector<std::shared_ptr<DBusInterfaceHandler>> handlerList = handlerRecord->second;
+        auto adapter = find(handlerList.begin(), handlerList.end(), handler);
+        if (adapter != handlerList.end()) {
+            return false;
+        }
+        else {
+            handlerList.push_back(handler);
+            handlerRecord->second = handlerList;
+        }
+    }
+    return true;
+}","bool DBusObjectManager::addToRegisteredObjectsTable(DBusInterfaceHandlerPath ifpath, std::shared_ptr<DBusInterfaceHandler> handler) {
+    if (registeredObjectsTable_.count(ifpath)) {
+        return false;
+    }
+    registeredObjectsTable_[ifpath] = std::move(handler);
+    return true;
+}",22.161042832259582
+bottom,4,java,50,"private void initializeAudioControls() {
+    mMuteButton = new DescriptiveTextWithControlsView.Control(
+            mContext.getDrawable(R.drawable.ic_mic_off),
+            v -> {
+                mInCallService.setMuted(mMuteCallToggle);
+                mMuteCallToggle = !mMuteCallToggle;
+            });
+    mEndCallButton = new DescriptiveTextWithControlsView.Control(
+            mContext.getDrawable(R.drawable.ic_call_end_button),
+            v -> mCurrentCall.disconnect());
+    mDialpadButton = new DescriptiveTextWithControlsView.Control(
+            mContext.getDrawable(R.drawable.ic_dialpad), this::onClick);
+}","private void initializeAudioControls() {
+    mEndCallButton.setImageResource(R.drawable.ic_end_call);
+    mEndCallButton.setOnClickListener(view -> endCall());
+
+    mMuteButton.setImageResource(R.drawable.ic_mute);
+    mMuteButton.setOnClickListener(view -> toggleMute());
+
+    mDialpadButton.setImageResource(R.drawable.ic_dialpad);
+    mDialpadButton.setOnClickListener(view -> showDialpad());
+}",22.75797761148233
+bottom,5,python,7,"def get_apigear_datatype(t: str) -> typing.Optional[ApiGearType]:
+    is_array = False
+    apigear_type = None
+    if t.endswith(""[]""):
+        is_array = True
+        t = t[0:-2]
+
+    if t in [""int8"", ""int16"", ""int32"", ""uint8"", ""uint16"", ""uint32""]:
+        apigear_type = ApiGearType(ApiGearBasicType.INT32.value)
+    elif t in [""int64"", ""uint64""]:
+        apigear_type = ApiGearType(ApiGearBasicType.INT64.value)
+    elif t == ""float"":
+        apigear_type = ApiGearType(ApiGearBasicType.FLOAT32.value)
+    elif t == ""double"":
+        apigear_type = ApiGearType(ApiGearBasicType.FLOAT64.value)
+    elif t == ""boolean"":
+        apigear_type = ApiGearType(ApiGearBasicType.BOOL.value)
+    elif t == ""string"":
+        apigear_type = ApiGearType(ApiGearBasicType.STRING.value)
+    else:
+        apigear_type = ApiGearType(t.replace(""."", ""_""))
+
+    if is_array and apigear_type is not None:
+        apigear_type.is_array = True
+
+    return apigear_type","def get_apigear_datatype(t: str) -> typing.Optional[ApiGearType]:
+    t = t.strip()
+    if t == ""string"":
+        return ApiGearType(name=""string"", array=False)
+    elif t == ""integer"":
+        return ApiGearType(name=""integer"", array=False)
+    elif t == ""number"":
+        return ApiGearType(name=""number"", array=False)
+    elif t == ""boolean"":
+        return ApiGearType(name=""boolean"", array=False)
+    elif t == ""object"":
+        return ApiGearType(name=""object"", array=False)
+    elif t == ""array"":
+        return ApiGearType(name=""array"", array=True)
+    elif t.endswith(""[]""):
+        name = t[:-2]
+        return ApiGearType(name=name, array=True)
+    else:
+        return ApiGearType(name=t.replace(""."", ""_""), array=False)",22.88130350567934
+bottom,6,c,89,"static int hv_shield_init(const struct device* dev) {
+  const struct hv_shield_config_t* config = dev->config;
+  struct hv_shield_data_t* data = dev->data;
+
+  int err = gpio_pin_configure_dt(&config->oe_gpio_spec, GPIO_OUTPUT_INACTIVE);
+  if (err) {
+    LOG_ERR(""Error setting up Output enable pin (%d)"", err);
+    return err;
+  }
+
+  memset(&data->registers, 0, sizeof(data->registers));
+
+  err = _hv_shield_update(dev);
+  if (err) {
+    LOG_ERR(""Error writing registers (%d)"", err);
+    return err;
+  }
+
+  err = gpio_pin_set_dt(&config->oe_gpio_spec, 1);
+  if (err) {
+    LOG_ERR(""Error setting enabling output (%d)"", err);
+  }
+
+  return err;
+}","static int hv_shield_init(const struct device* dev) {
+  int ret;
+
+  ret = gpio_config(dev->config->oe_gpio, GPIO_OUTPUT);
+  if (ret < 0) {
+    LOG_ERR(""Failed to configure OE GPIO: %d\n"", ret);
+    return ret;
+  }
+
+  ret = regulator_enable(dev->config->regulator);
+  if (ret < 0) {
+    LOG_ERR(""Failed to enable regulator: %d\n"", ret);
+    return ret;
+  }
+
+  memset(dev->regs, 0, sizeof(dev->regs));
+
+  ret = gpio_set(dev->config->oe_gpio, 1);
+  if (ret < 0) {
+    LOG_ERR(""Failed to set OE pin: %d\n"", ret);
+    regulator_disable(dev->config->regulator);
+    return ret;
+  }
+
+  return 0;
+}",23.311729275212684
+bottom,7,cpp,73,"bool DBusObjectManager::handleMessage(const DBusMessage& dbusMessage) {
+    const char* objectPath = dbusMessage.getObjectPath();
+    const char* interfaceName = dbusMessage.getInterface();
+
+    if (NULL == objectPath) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), "" objectPath == NULL"");
+    }
+    if (NULL == interfaceName) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), "" interfaceName == NULL"");
+    }
+
+    DBusInterfaceHandlerPath handlerPath(objectPath, interfaceName);
+
+    std::unique_lock<std::recursive_mutex> itsLock(objectPathLock_);
+
+    auto handlerIterator = dbusRegisteredObjectsTable_.find(handlerPath);
+    const bool foundDBusInterfaceHandler = handlerIterator != dbusRegisteredObjectsTable_.end();
+    bool dbusMessageHandled = false;
+
+    if (foundDBusInterfaceHandler) {
+        std::shared_ptr<DBusInterfaceHandler> dbusStubAdapterBase = handlerIterator->second.front();
+        itsLock.unlock();
+        dbusMessageHandled = dbusStubAdapterBase->onInterfaceDBusMessage(dbusMessage);
+        return dbusMessageHandled;
+    } else if (dbusMessage.hasInterfaceName(""org.freedesktop.DBus.Introspectable"")) {
+        dbusMessageHandled = onIntrospectableInterfaceDBusMessage(dbusMessage);
+    }
+
+    return dbusMessageHandled;
+}","bool DBusObjectManager::handleMessage(const DBusMessage& dbusMessage) {
+    if (!dbusMessage) {
+        return false;
+    }
+
+    const std::string objectPath = dbusMessage.getObjectPath();
+    const std::string interface = dbusMessage.getInterface();
+
+    if (handlerMap_.count(objectPath) > 0 && handlerMap_[objectPath].count(interface) > 0) {
+        HandlerFunction handler = handlerMap_[objectPath][interface];
+        return handler(dbusMessage);
+    } else {
+        return handleIntrospectRequest(dbusMessage);
+    }
+}",23.838564059697163
+bottom,8,python,20,"def traverse_signal_tree(tree: VSSNode, fd: TextIOWrapper, static_uid: bool, add_optional: bool):
+    fd.write('syntax = ""proto3"";\n\n')
+
+    imports = []
+    for node in findall(tree, filter_=lambda n: isinstance(n.data, VSSDataDatatype)):
+        datatype = node.data.datatype
+        if ""."" not in datatype:
+            continue
+        struct_path = Path(node.data.datatype.replace(""."", ""/""))  # type: ignore
+        imports.append(f""{struct_path.parent}/{struct_path.parent.name}.proto"")
+    write_imports(fd, imports)
+
+    # write proto messages to file
+    for node in findall(tree, filter_=lambda node: isinstance(node.data, VSSDataBranch)):
+        fd.write(f""message {node.get_fqn('')} {{"" + ""\n"")
+        print_messages(node.children, fd, static_uid, add_optional)
+        fd.write(""}\n\n"")","def traverse_signal_tree(tree: VSSNode, fd: TextIOWrapper, static_uid: bool, add_optional: bool):
+    if tree.name == ""signal"":
+        fd.write(f""  {tree.name} {{"")
+        if add_optional:
+            fd.write("" optional"")
+        fd.write(""\n"")
+        for child in tree.children:
+            if child.name == ""uid"":
+                fd.write(f""    uint32 {child.name} = 1;"")
+                if add_optional:
+                    fd.write("" optional"")
+                fd.write("";\n"")
+            elif child.name == ""timestamp"":
+                fd.write(f""    uint64 {child.name} = 2;"")
+                if add_optional:
+                    fd.write("" optional"")
+                fd.write("";\n"")
+            elif child.name == ""data"":
+                fd.write(f""    {get_data_type(child)} {child.name} = 3;"")
+                if add_optional:
+                    fd.write("" optional"")
+                fd.write("";\n"")
+        fd.write(""  }\n"")
+    else:
+        for child in tree.children:
+            traverse_signal_tree(child, fd, static_uid, add_optional)
+
+def get_data_type(node: VSSNode) -> str:
+    if node.name == ""int8"":
+        return ""int32""
+    elif node.name == ""uint8"":
+        return ""uint32""
+    elif node.name == ""int16"":
+        return ""int32""
+    elif node.name == ""uint16"":
+        return ""uint32""
+    elif node.name == ""int32"":
+        return ""int32""
+    elif node.name == ""uint32"":
+        return ""uint32""
+    elif node.name == ""int64"":
+        return ""int64""
+    elif node.name == ""uint64"":
+        return ""uint64""
+    elif node.name == ""float"":
+        return ""float""
+    elif node.name == ""double"":
+        return ""double""
+    elif node.name == ""string"":
+        return ""string""
+    else:
+        return ""bytes",24.368505552783105
+bottom,9,c,99,"int abstract_lin_scheduler_set_active_table(
+    abstract_lin_scheduler_handle_t sched, size_t table_index) {
+  if (table_index >= sched->table_count) {
+    return -ENOENT;
+  }
+
+  bool active_before = sched->current_table != -1;
+
+  if (active_before) {
+    k_sem_take(&sched->active, K_FOREVER);
+  }
+
+  sched->current_table = table_index;
+  sched->current_table_entry = 0;  // start from the beginning again.
+
+  k_sem_give(&sched->active);
+
+  return 0;
+}","int abstract_lin_scheduler_set_active_table(uint8_t table_index) {
+  if (table_index >= MAX_LIN_SCHEDULE_TABLES) {
+    return -EINVAL;
+  }
+
+  sem_wait(&lin_scheduler_mutex);
+
+  lin_scheduler_state->active_table = table_index;
+  lin_scheduler_state->entry_pointer = lin_schedule_tables[table_index];
+
+  sem_post(&lin_scheduler_mutex);
+
+  return 0;
+}",26.591473284747742
+bottom,10,python,15,"def get_rendered_tree(tree: VSSNode, attributes: tuple[str]) -> str:
+    tree_content_lines = []
+    for pre, fill, node in RenderTree(tree):
+        tree_content_lines.append(""%s%s"" % (pre, node.name))
+        for attribute in attributes:
+            content = getattr(node.data, attribute, None)
+            if content is None:
+                continue
+            if isinstance(content, str):
+                tree_content_lines.append(""%s%s='%s'"" % (fill, attribute, content))
+            else:
+                tree_content_lines.append(""%s%s=%s"" % (fill, attribute, content))
+    return ""\n"".join(tree_content_lines)","def get_rendered_tree(tree: VSSNode, attributes: tuple[str]) -> str:
+    result = tree.name
+    if tree.children and len(tree.children) > 0:
+        result += ""\n""
+        for child in tree.children:
+            result += ""  "" + get_rendered_tree(child, attributes) + ""\n""
+    node_attributes = {attribute: getattr(tree, attribute) for attribute in attributes if hasattr(tree, attribute)}
+    if node_attributes:
+        result += f"" ({', '.join([f'{k}={v}' for k, v in node_attributes.items()])})""
+    return result",26.990266128493225

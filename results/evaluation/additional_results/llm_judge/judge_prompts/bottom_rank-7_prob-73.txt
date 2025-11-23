@@ -1,0 +1,52 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+bool DBusObjectManager::handleMessage(const DBusMessage& dbusMessage) {
+    const char* objectPath = dbusMessage.getObjectPath();
+    const char* interfaceName = dbusMessage.getInterface();
+
+    if (NULL == objectPath) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), " objectPath == NULL");
+    }
+    if (NULL == interfaceName) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), " interfaceName == NULL");
+    }
+
+    DBusInterfaceHandlerPath handlerPath(objectPath, interfaceName);
+
+    std::unique_lock<std::recursive_mutex> itsLock(objectPathLock_);
+
+    auto handlerIterator = dbusRegisteredObjectsTable_.find(handlerPath);
+    const bool foundDBusInterfaceHandler = handlerIterator != dbusRegisteredObjectsTable_.end();
+    bool dbusMessageHandled = false;
+
+    if (foundDBusInterfaceHandler) {
+        std::shared_ptr<DBusInterfaceHandler> dbusStubAdapterBase = handlerIterator->second.front();
+        itsLock.unlock();
+        dbusMessageHandled = dbusStubAdapterBase->onInterfaceDBusMessage(dbusMessage);
+        return dbusMessageHandled;
+    } else if (dbusMessage.hasInterfaceName("org.freedesktop.DBus.Introspectable")) {
+        dbusMessageHandled = onIntrospectableInterfaceDBusMessage(dbusMessage);
+    }
+
+    return dbusMessageHandled;
+}
+
+**[Generated function code]**
+bool DBusObjectManager::handleMessage(const DBusMessage& dbusMessage) {
+    if (!dbusMessage) {
+        return false;
+    }
+
+    const std::string objectPath = dbusMessage.getObjectPath();
+    const std::string interface = dbusMessage.getInterface();
+
+    if (handlerMap_.count(objectPath) > 0 && handlerMap_[objectPath].count(interface) > 0) {
+        HandlerFunction handler = handlerMap_[objectPath][interface];
+        return handler(dbusMessage);
+    } else {
+        return handleIntrospectRequest(dbusMessage);
+    }
+}

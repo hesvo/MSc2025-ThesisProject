@@ -1,0 +1,12 @@
+Your task is to implement a C function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related C function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Maps a raw integer gain value (1, 2, 4, 8, or 16) to its corresponding `hv_shield_dac_gains_t` enum representation, returning 0 on success or an `-ENOTSUP` error code for any unsupported input"
+
+**Code:**
+static int hvs_dac_convert_gain(int raw_gain, enum hv_shield_dac_gains_t* gain) {

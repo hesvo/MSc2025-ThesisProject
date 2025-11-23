@@ -1,0 +1,21 @@
+test_name,no. RCI different,percentage different
+adapted_12b_core_generation_auto_long_one,12,13.64
+adapted_12b_core_generation_auto_long_three,17,19.32
+adapted_12b_core_generation_auto_short_one,11,12.50
+adapted_12b_core_generation_auto_short_three,15,17.05
+adapted_12b_core_generation_xl_long_one,21,23.86
+adapted_12b_core_generation_xl_long_three,14,15.91
+adapted_12b_core_generation_xl_long_zero,16,18.18
+adapted_12b_core_generation_xl_short_one,14,15.91
+adapted_12b_core_generation_xl_short_three,13,14.77
+adapted_12b_core_generation_xl_short_zero,13,14.77
+adapted_12b_core_summarization_auto_long_one,68,77.27
+adapted_12b_core_summarization_auto_long_three,70,79.55
+adapted_12b_core_summarization_auto_short_one,72,81.82
+adapted_12b_core_summarization_auto_short_three,73,82.95
+adapted_12b_core_summarization_xl_long_one,78,88.64
+adapted_12b_core_summarization_xl_long_three,76,86.36
+adapted_12b_core_summarization_xl_long_zero,87,98.86
+adapted_12b_core_summarization_xl_short_one,77,87.50
+adapted_12b_core_summarization_xl_short_three,74,84.09
+adapted_12b_core_summarization_xl_short_zero,80,90.91

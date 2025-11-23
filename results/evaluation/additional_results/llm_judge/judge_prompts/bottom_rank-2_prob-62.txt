@@ -1,0 +1,25 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+void DBusConnection::handleSignalStates() {
+    std::map<std::shared_ptr<DBusProxyConnection::DBusSignalHandler>, std::set<uint32_t>> tmpHandlers;
+    {
+        std::lock_guard<std::mutex> itsLock(signalStateHandlersMutex_);
+        tmpHandlers = signalStateHandlers_;
+    }
+    for (auto itsHandler : tmpHandlers) {
+        for (uint32_t tag : itsHandler.second) {
+            itsHandler.first->onSpecificError(CommonAPI::CallStatus::SUCCESS, tag);
+        }
+    }
+}
+
+**[Generated function code]**
+void DBusConnection::handleSignalStates() {
+    std::lock_guard<std::mutex> lock(signalMutex_);
+    for (auto& signalHandler : signalHandlers_) {
+        signalHandler.onSpecificError(SUCCESS);
+    }
+}

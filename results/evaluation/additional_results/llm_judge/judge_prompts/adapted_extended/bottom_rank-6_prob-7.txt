@@ -1,0 +1,64 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+def get_apigear_datatype(t: str) -> typing.Optional[ApiGearType]:
+    is_array = False
+    apigear_type = None
+    if t.endswith("[]"):
+        is_array = True
+        t = t[0:-2]
+
+    if t in ["int8", "int16", "int32", "uint8", "uint16", "uint32"]:
+        apigear_type = ApiGearType(ApiGearBasicType.INT32.value)
+    elif t in ["int64", "uint64"]:
+        apigear_type = ApiGearType(ApiGearBasicType.INT64.value)
+    elif t == "float":
+        apigear_type = ApiGearType(ApiGearBasicType.FLOAT32.value)
+    elif t == "double":
+        apigear_type = ApiGearType(ApiGearBasicType.FLOAT64.value)
+    elif t == "boolean":
+        apigear_type = ApiGearType(ApiGearBasicType.BOOL.value)
+    elif t == "string":
+        apigear_type = ApiGearType(ApiGearBasicType.STRING.value)
+    else:
+        apigear_type = ApiGearType(t.replace(".", "_"))
+
+    if is_array and apigear_type is not None:
+        apigear_type.is_array = True
+
+    return apigear_type
+
+**[Generated function code]**
+def get_apigear_datatype(t: str) -> typing.Optional[ApiGearType]:
+    if t == "string":
+        return ApiGearType(t, "string")
+    elif t == "integer":
+        return ApiGearType(t, "integer")
+    elif t == "boolean":
+        return ApiGearType(t, "boolean")
+    elif t == "float":
+        return ApiGearType(t, "float")
+    elif t == "date":
+        return ApiGearType(t, "date")
+    elif t == "datetime":
+        return ApiGearType(t, "datetime")
+    elif t == "time":
+        return ApiGearType(t, "time")
+    elif t == "array":
+        return ApiGearType(t, "array")
+    elif t == "object":
+        return ApiGearType(t, "object")
+    elif t == "enum":
+        return ApiGearType(t, "enum")
+    elif t == "any":
+        return ApiGearType(t, "any")
+    elif t == "null":
+        return ApiGearType(t, "null")
+    elif t.endswith("[]"):
+        return ApiGearType(t[:-2], "array")
+    elif "." in t:
+        return ApiGearType(t.replace(".", "_"), "object")
+    else:
+        return ApiGearType(t, "string")

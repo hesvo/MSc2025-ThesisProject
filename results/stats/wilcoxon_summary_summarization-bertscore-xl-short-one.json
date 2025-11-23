@@ -1,0 +1,16 @@
+{
+  "n_pairs": 88,
+  "n_ties": 3,
+  "n_improved": 39,
+  "n_worse": 46,
+  "mean_diff": -0.4937596619129181,
+  "mean_diff_ci_lo": -1.7781819860366257,
+  "mean_diff_ci_hi": 0.7616272534836421,
+  "median_diff": -0.08926093578338623,
+  "median_diff_ci_lo": -0.9627550840377808,
+  "median_diff_ci_hi": 0.14417767524719238,
+  "p_d_gt_0": 0.4431818181818182,
+  "wilcoxon_statistic": 1610.0,
+  "wilcoxon_pvalue": 0.3405673346628212,
+  "alternative": "two-sided"
+}

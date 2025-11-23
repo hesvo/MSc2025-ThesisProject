@@ -1,0 +1,30 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+private void initializeAudioControls() {
+    mMuteButton = new DescriptiveTextWithControlsView.Control(
+            mContext.getDrawable(R.drawable.ic_mic_off),
+            v -> {
+                mInCallService.setMuted(mMuteCallToggle);
+                mMuteCallToggle = !mMuteCallToggle;
+            });
+    mEndCallButton = new DescriptiveTextWithControlsView.Control(
+            mContext.getDrawable(R.drawable.ic_call_end_button),
+            v -> mCurrentCall.disconnect());
+    mDialpadButton = new DescriptiveTextWithControlsView.Control(
+            mContext.getDrawable(R.drawable.ic_dialpad), this::onClick);
+}
+
+**[Generated function code]**
+private void initializeAudioControls() {
+    mEndCallButton.setImageResource(R.drawable.ic_end_call);
+    mEndCallButton.setOnClickListener(view -> endCall());
+
+    mMuteButton.setImageResource(R.drawable.ic_mute);
+    mMuteButton.setOnClickListener(view -> toggleMute());
+
+    mDialpadButton.setImageResource(R.drawable.ic_dialpad);
+    mDialpadButton.setOnClickListener(view -> showDialpad());
+}

@@ -1,0 +1,653 @@
+category,rank,language,id,reference,generated_rci,codebleu
+top,1,c,81,"static void send_transfer_data_response(uint8_t block_sequence_counter) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_TRANSFER_DATA + 0x40;
+
+  uint8_t tx_data[] = {positive_sid, block_sequence_counter};
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","static void send_transfer_data_response(uint8_t block_sequence_counter) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_TRANSFER_DATA + 0x40;
+  uint8_t tx_data[] = {positive_sid, block_sequence_counter};
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",100.0
+top,2,c,83,"static void send_transer_exit_positive_response() {
+  int ret;
+  uint8_t positive_sid = UDS_SID_REQUEST_TRANSFER_EXIT + 0x40;
+
+  uint8_t tx_data[] = {positive_sid};
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","static void send_transer_exit_positive_response() {
+  int ret;
+  uint8_t positive_sid = UDS_SID_TRANSFER_EXIT + 0x40;
+  uint8_t tx_data[] = {positive_sid};
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",96.97182467139596
+top,3,c,82,"static void send_routine_control_result(uint16_t routine_id, uint8_t result) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_ROUTINE_CONTROL + 0x40;
+
+  uint8_t tx_data[] = {positive_sid, 0x1, (routine_id >> 8) & 0xFF,
+                       routine_id & 0xFF, result};
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","static void send_routine_control_result(uint16_t routine_id, uint8_t result) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_ROUTINE_CONTROL + 0x40;
+
+  uint8_t tx_data[] = {
+    positive_sid,
+    UDS_ROUTINE_CONTROL_TYPE_RESULT,
+    (routine_id >> 8) & 0xFF,
+    routine_id & 0xFF,
+    result,
+  };
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",89.84799874940762
+top,4,java,47,"public void onCallAdded(Call call) {
+    if (call != null) {
+        call.registerCallback(mCallback);
+    }
+}","public void onCallAdded(Call call) {
+    if (call != null) {
+        call.registerCallback(mCallCallback);
+    }
+}",89.7481928563336
+top,5,c,80,"void send_request_download_response() {
+  int ret;
+  uint8_t positive_sid = UDS_SID_REQUEST_DOWNLOAD + 0x40;
+
+
+  uint8_t tx_data[] = {
+    positive_sid,
+    0x20,  // positive response code
+    0x00,
+    0xD2,  // block size = 258 - 2
+  };
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","void send_request_download_response() {
+  int ret;
+  uint8_t positive_sid = UDS_SID_REQUEST_DOWNLOAD + 0x40;
+  uint8_t tx_data[] = {
+    positive_sid,
+    0x00,
+    0xD2,
+    0x00,
+  };
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",86.79385824994937
+top,6,cpp,71,"void DBusProxyBase::addSignalStateHandler(
+            std::shared_ptr<DBusProxyConnection::DBusSignalHandler> _handler,
+            const uint32_t _subscription) {
+    connection_->addSignalStateHandler(_handler, _subscription);
+}","void DBusProxyBase::addSignalStateHandler(std::shared_ptr<DBusProxyConnection::DBusSignalHandler> _handler, const uint32_t _subscription) {
+    connection_->addSignalStateHandler(_handler, _subscription);
+}",85.57023337969444
+top,7,python,11,"def deep_update(base: dict[str, Any], update: dict[str, Any]) -> None:
+    for key, value in update.items():
+        if isinstance(value, dict):
+            if key in base and isinstance(base[key], dict):
+                deep_update(base[key], value)
+            else:
+                base[key] = value
+        else:
+            base[key] = value","def deep_update(base: dict[str, Any], update: dict[str, Any]) -> None:
+    for key, value in update.items():
+        if isinstance(value, dict) and key in base and isinstance(base[key], dict):
+            deep_update(base[key], value)
+        else:
+            base[key] = value",81.35131094692399
+top,8,java,35,"private static void selectMediaSourceAndFinish(Context context, ComponentName componentName,
+        CarMediaManager carMediaManager) {
+    try {
+        carMediaManager.setMediaSource(componentName, CarMediaManager.MEDIA_SOURCE_MODE_BROWSE);
+        if (context instanceof Activity) {
+            ((Activity) context).finish();
+        }
+    } catch (CarNotConnectedException e) {
+        Log.e(TAG, ""Car not connected"", e);
+    }
+}","private static void selectMediaSourceAndFinish(Context context, ComponentName componentName, CarMediaManager carMediaManager) {
+    carMediaManager.setMediaSource(componentName);
+    if (context instanceof Activity) {
+        try {
+            ((Activity) context).finish();
+        } catch (CarNotConnectedException e) {
+            Log.e(TAG, ""Car service unavailable"", e);
+        }
+    }
+}",75.79287216142237
+top,9,c,78,"void send_positive_reset_response(uint8_t reset_type) {
+  int ret;
+  uint8_t positive_sid = UDS_SID_ECU_RESET + 0x40;
+
+  uint8_t tx_data[] = {positive_sid, reset_type};
+
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}","void send_positive_reset_response(uint8_t reset_type) {
+  int ret;
+  uint8_t tx_data[] = {UDS_SID_POSITIVE_RESPONSE, reset_type};
+  ret = isotp_send(&send_ctx, can_dev, tx_data, sizeof(tx_data), &tx_addr,
+                   &rx_addr, send_complete_cb, NULL);
+  if (ret != ISOTP_N_OK) {
+    LOG_ERR(""Error while sending data to ID %d [%d]\n"", tx_addr.std_id, ret);
+  }
+}",74.25924108023764
+top,10,python,4,"def get_type(cls, datatype: str) -> tuple[str, Callable, list[str]] | None:
+        for t in cls.types:
+            if datatype == t[0]:
+                return t
+        return None","def get_type(cls, datatype: str) -> tuple[str, Callable, list[str]] | None:
+    for type_def in cls.types:
+        if type_def[0] == datatype:
+            return type_def
+    return None",72.51558048642302
+bottom,1,java,38,"private Intent getMapsIntent() {
+    Intent defaultIntent =
+            Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_MAPS);
+    PackageManager pm = getPackageManager();
+    ComponentName defaultActivity = defaultIntent.resolveActivity(pm);
+
+    for (String intentUri : getResources().getStringArray(
+            R.array.config_homeCardPreferredMapActivities)) {
+        Intent preferredIntent;
+        try {
+            preferredIntent = Intent.parseUri(intentUri, Intent.URI_ANDROID_APP_SCHEME);
+        } catch (URISyntaxException se) {
+            Log.w(TAG, ""Invalid intent URI in config_homeCardPreferredMapActivities"", se);
+            continue;
+        }
+
+        if (defaultActivity != null && !defaultActivity.getPackageName().equals(
+                preferredIntent.getPackage())) {
+            continue;
+        }
+
+        if (preferredIntent.resolveActivityInfo(pm, /* flags= */ 0) != null) {
+            return preferredIntent;
+        }
+    }
+    return defaultIntent;
+}","private Intent getMapsIntent() {
+    Intent intent = null;
+    for (Intent resolvedIntent : mMapsIntents) {
+        if (resolvedIntent.resolveActivity(getPackageManager()) != null) {
+            intent = resolvedIntent;
+            break;
+        }
+    }
+    if (intent == null) {
+        intent = new Intent(Intent.ACTION_VIEW);
+        intent.setPackage(""com.google.android.apps.maps"");
+        intent.setClassName(""com.google.android.apps.maps"", ""com.google.android.maps.MapsActivity"");
+    }
+    return intent;
+}",12.751013811614452
+bottom,2,java,49,"void updateModelWithPhoneNumber(String number) {
+    String formattedNumber = TelecomUtils.getFormattedNumber(mContext, number);
+    mCardContent = new DescriptiveTextWithControlsView(null, formattedNumber,
+            mOngoingCallSubtitle, mElapsedTimeClock.millis(), mMuteButton, mEndCallButton,
+            mDialpadButton);
+    mPresenter.onModelUpdated(this);
+}","```java
+void updateModelWithPhoneNumber(String number) {
+    mModel = new DescriptiveTextWithControlsView.Model(
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number),
+            PhoneNumberFormatter.format(number",13.585338382381346
+bottom,3,c,99,"int abstract_lin_scheduler_set_active_table(
+    abstract_lin_scheduler_handle_t sched, size_t table_index) {
+  if (table_index >= sched->table_count) {
+    return -ENOENT;
+  }
+
+  bool active_before = sched->current_table != -1;
+
+  if (active_before) {
+    k_sem_take(&sched->active, K_FOREVER);
+  }
+
+  sched->current_table = table_index;
+  sched->current_table_entry = 0;  // start from the beginning again.
+
+  k_sem_give(&sched->active);
+
+  return 0;
+}","int abstract_lin_scheduler_set_active_table(uint32_t index) {
+  if (index >= MAX_SCHEDULES) {
+    return -EINVAL;
+  }
+
+  sem_acquire(&scheduler_sem);
+  scheduler_state = SCHEDULER_STATE_ACTIVE;
+  scheduler_entry_ptr = &scheduler_table[index][0];
+  sem_release(&scheduler_sem);
+
+  return 0;
+}",16.680541574658907
+bottom,4,cpp,61,"void DBusConnection::deleteAsyncHandlers() {
+    std::vector<DBusMessageReplyAsyncHandler*> asyncHandlers;
+    {
+        std::lock_guard<std::mutex> asyncHandlersLock(asyncHandlersToDeleteMutex_);
+        asyncHandlers = asyncHandlersToDelete_;
+        asyncHandlersToDelete_.clear();
+    }
+
+    auto it = asyncHandlers.begin();
+    while(it != asyncHandlers.end()) {
+        delete *it;
+        it = asyncHandlers.erase(it);
+    }
+}","void DBusConnection::deleteAsyncHandlers() {
+    std::lock_guard<std::mutex> lock(asyncHandlersMutex_);
+    for (auto handler : asyncHandlers_) {
+        delete handler;
+    }
+    asyncHandlers_.clear();
+}",20.961162450228127
+bottom,5,cpp,57,"void DBusConnection::onToggleWatch(::DBusWatch* libdbusWatch, void* data) {
+    WatchContext* watchContext = static_cast<WatchContext*>(data);
+
+    if (NULL == watchContext) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), ""watchContext == NULL"");
+        return;
+    }
+
+    DBusWatch* dbusWatch = static_cast<DBusWatch*>(dbus_watch_get_data(libdbusWatch));
+
+    if (dbusWatch == NULL) {
+        DBusWatch* dbusWatch = new DBusWatch(libdbusWatch, watchContext->mainLoopContext_, watchContext->dbusConnection_);
+        dbusWatch->addDependentDispatchSource(watchContext->dispatchSource_);
+        dbus_watch_set_data(libdbusWatch, dbusWatch, NULL);
+
+        if (dbusWatch->isReadyToBeWatched()) {
+            dbusWatch->startWatching();
+        }
+    } else {
+        if (!dbusWatch->isReadyToBeWatched()) {
+            dbusWatch->stopWatching();
+            dbus_watch_set_data(libdbusWatch, NULL, NULL);
+        } else {
+            dbusWatch->startWatching();
+        }
+    }
+}","void DBusConnection::onToggleWatch(::DBusWatch* libdbusWatch, void* data) {
+    if (!libdbusWatch) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), ""libdbusWatch == nullptr"");
+        return;
+    }
+
+    auto watch = std::static_pointer_cast<DBusWatch>(std::shared_ptr<DBusWatch>(libdbusWatch));
+    if (watch->isReady()) {
+        watch->start();
+    } else {
+        watch->stop();
+    }
+}",22.28500108346697
+bottom,6,python,7,"def get_apigear_datatype(t: str) -> typing.Optional[ApiGearType]:
+    is_array = False
+    apigear_type = None
+    if t.endswith(""[]""):
+        is_array = True
+        t = t[0:-2]
+
+    if t in [""int8"", ""int16"", ""int32"", ""uint8"", ""uint16"", ""uint32""]:
+        apigear_type = ApiGearType(ApiGearBasicType.INT32.value)
+    elif t in [""int64"", ""uint64""]:
+        apigear_type = ApiGearType(ApiGearBasicType.INT64.value)
+    elif t == ""float"":
+        apigear_type = ApiGearType(ApiGearBasicType.FLOAT32.value)
+    elif t == ""double"":
+        apigear_type = ApiGearType(ApiGearBasicType.FLOAT64.value)
+    elif t == ""boolean"":
+        apigear_type = ApiGearType(ApiGearBasicType.BOOL.value)
+    elif t == ""string"":
+        apigear_type = ApiGearType(ApiGearBasicType.STRING.value)
+    else:
+        apigear_type = ApiGearType(t.replace(""."", ""_""))
+
+    if is_array and apigear_type is not None:
+        apigear_type.is_array = True
+
+    return apigear_type","def get_apigear_datatype(t: str) -> typing.Optional[ApiGearType]:
+    if t == ""string"":
+        return ApiGearType(t, ""string"")
+    elif t == ""integer"":
+        return ApiGearType(t, ""integer"")
+    elif t == ""boolean"":
+        return ApiGearType(t, ""boolean"")
+    elif t == ""float"":
+        return ApiGearType(t, ""float"")
+    elif t == ""date"":
+        return ApiGearType(t, ""date"")
+    elif t == ""datetime"":
+        return ApiGearType(t, ""datetime"")
+    elif t == ""time"":
+        return ApiGearType(t, ""time"")
+    elif t == ""array"":
+        return ApiGearType(t, ""array"")
+    elif t == ""object"":
+        return ApiGearType(t, ""object"")
+    elif t == ""enum"":
+        return ApiGearType(t, ""enum"")
+    elif t == ""any"":
+        return ApiGearType(t, ""any"")
+    elif t == ""null"":
+        return ApiGearType(t, ""null"")
+    elif t.endswith(""[]""):
+        return ApiGearType(t[:-2], ""array"")
+    elif ""."" in t:
+        return ApiGearType(t.replace(""."", ""_""), ""object"")
+    else:
+        return ApiGearType(t, ""string"")",22.619376371903485
+bottom,7,c,89,"static int hv_shield_init(const struct device* dev) {
+  const struct hv_shield_config_t* config = dev->config;
+  struct hv_shield_data_t* data = dev->data;
+
+  int err = gpio_pin_configure_dt(&config->oe_gpio_spec, GPIO_OUTPUT_INACTIVE);
+  if (err) {
+    LOG_ERR(""Error setting up Output enable pin (%d)"", err);
+    return err;
+  }
+
+  memset(&data->registers, 0, sizeof(data->registers));
+
+  err = _hv_shield_update(dev);
+  if (err) {
+    LOG_ERR(""Error writing registers (%d)"", err);
+    return err;
+  }
+
+  err = gpio_pin_set_dt(&config->oe_gpio_spec, 1);
+  if (err) {
+    LOG_ERR(""Error setting enabling output (%d)"", err);
+  }
+
+  return err;
+}","static int hv_shield_init(const struct device* dev) {
+  int ret;
+
+  ret = gpio_request(dev->data->oe_gpio, ""hv_shield_oe"");
+  if (ret < 0) {
+    LOG_ERR(""Failed to request OE GPIO %d\n"", dev->data->oe_gpio);
+    return ret;
+  }
+
+  ret = gpio_config_output(dev->data->oe_gpio, dev->data->oe_gpio_flags);
+  if (ret < 0) {
+    LOG_ERR(""Failed to configure OE GPIO %d\n"", dev->data->oe_gpio);
+    gpio_free(dev->data->oe_gpio);
+    return ret;
+  }
+
+  memset(dev->data->hw_reg, 0, sizeof(dev->data->hw_reg));
+
+  ret = i2c_write(dev->data->i2c_bus, dev->data->hw_reg, sizeof(dev->data->hw_reg));
+  if (ret < 0) {
+    LOG_ERR(""Failed to write to I2C register\n"");
+    gpio_free(dev->data->oe_gpio);
+    return ret;
+  }
+
+  ret = gpio_set_value(dev->data->oe_gpio, 1);
+  if (ret < 0) {
+    LOG_ERR(""Failed to set OE GPIO %d\n"", dev->data->oe_gpio);
+    gpio_free(dev->data->oe_gpio);
+    return ret;
+  }
+
+  return 0;
+}",22.948706806044783
+bottom,8,c,94,"static int can_router_sysinit() {
+  LOG_DBG(""Initializing can router"");
+
+  STRUCT_SECTION_FOREACH (can_router_table_t, table) {
+    int err = can_router_register(table->entries, table->entry_count);
+    if (err) {
+      LOG_ERR(""could not register can router"");
+      return err;
+    }
+  }
+
+  return 0;
+}","static int can_router_sysinit() {
+  int ret;
+  struct can_router_entry *entry;
+
+  for (entry = (struct can_router_entry *)__start_can_router_entries;
+       entry < (struct can_router_entry *)__stop_can_router_entries;
+       entry++) {
+    ret = can_router_register(entry);
+    if (ret < 0) {
+      return ret;
+    }
+  }
+
+  return 0;
+}",23.204957481071396
+bottom,9,python,20,"def traverse_signal_tree(tree: VSSNode, fd: TextIOWrapper, static_uid: bool, add_optional: bool):
+    fd.write('syntax = ""proto3"";\n\n')
+
+    imports = []
+    for node in findall(tree, filter_=lambda n: isinstance(n.data, VSSDataDatatype)):
+        datatype = node.data.datatype
+        if ""."" not in datatype:
+            continue
+        struct_path = Path(node.data.datatype.replace(""."", ""/""))  # type: ignore
+        imports.append(f""{struct_path.parent}/{struct_path.parent.name}.proto"")
+    write_imports(fd, imports)
+
+    # write proto messages to file
+    for node in findall(tree, filter_=lambda node: isinstance(node.data, VSSDataBranch)):
+        fd.write(f""message {node.get_fqn('')} {{"" + ""\n"")
+        print_messages(node.children, fd, static_uid, add_optional)
+        fd.write(""}\n\n"")","```python
+def traverse_signal_tree(tree: VSSNode, fd: TextIOWrapper, static_uid: bool, add_optional: bool):
+    if tree.name == ""signal"":
+        fd.write(f""message {tree.name} {{"")
+        if static_uid:
+            fd.write(f""\n    uint64 static_uid = 1;"")
+        if add_optional:
+            fd.write(f""\n    optional uint64 uid = 2;"")
+        else:
+            fd.write(f""\n    uint64 uid = 2;"")
+        if tree.children:
+            for child in tree.children:
+                traverse_signal_tree(child, fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_group"":
+        fd.write(f""message {tree.name} {{"")
+        if tree.children:
+            for child in tree.children:
+                traverse_signal_tree(child, fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_group_list"":
+        fd.write(f""repeated message {tree.children[0].name} {{"")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_list"":
+        fd.write(f""repeated message {tree.children[0].name} {{"")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_array"":
+        fd.write(f""repeated message {tree.children[0].name} {{"")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_struct"":
+        fd.write(f""message {tree.name} {{"")
+        if tree.children:
+            for child in tree.children:
+                traverse_signal_tree(child, fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_struct_list"":
+        fd.write(f""repeated message {tree.children[0].name} {{"")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_struct_array"":
+        fd.write(f""repeated message {tree.children[0].name} {{"")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_union"":
+        fd.write(f""message {tree.name} {{"")
+        if tree.children:
+            for child in tree.children:
+                traverse_signal_tree(child, fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name == ""signal_union_list"":
+        fd.write(f""repeated message {tree.children[0].name} {{"")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write(""\n}"")
+    elif tree.name",24.97733276550823
+bottom,10,python,10,"def load_vspec(include_dirs: list[Path], specs: list[Path], identifier: str | None = None) -> VSpec:
+    spec = None
+    vspecs: list[VSpec] = []
+    for s in specs:
+        includes = [s.parent] + include_dirs
+        vspecs.extend(get_vspecs(includes, s))
+    pre = ""VSpecs""
+    if identifier:
+        pre += f"" ({identifier})""
+    log.info(f""{pre} loaded, amount={len(vspecs)}"")
+    for vspec in vspecs:
+        log.debug(vspec)
+        if spec is None:
+            spec = vspec
+        else:
+            spec.update(vspec)
+    if not spec:
+        msg = f""Weird behavior. Could not load any spec: {specs}""
+        log.error(msg)
+        raise SpecException(msg)
+    return spec","def load_vspec(include_dirs: list[Path], specs: list[Path], identifier: str | None = None) -> VSpec:
+    vspecs = []
+    for spec in specs:
+        vspecs.append(VSpec(spec, identifier))
+
+    if not vspecs:
+        raise ValueError(""No VSpec files specified"")
+
+    return VSpec.merge(vspecs, include_dirs)",25.88299852056452

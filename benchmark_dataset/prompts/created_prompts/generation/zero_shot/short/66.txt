@@ -1,0 +1,12 @@
+Your task is to implement a Cpp function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Cpp function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Queries a D-Bus registry to determine if a specific service instance is available"
+
+**Code:**
+void DBusInstanceAvailabilityStatusChangedEvent::getServiceInstanceAvailabilityStatus(const std::string &_instance, CallStatus &_callStatus, AvailabilityStatus &_availabilityStatus) {

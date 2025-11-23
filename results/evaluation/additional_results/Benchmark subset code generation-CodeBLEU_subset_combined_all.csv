@@ -1,0 +1,15 @@
+Test name,CodeBLEU
+base-auto-long-one,52.03
+base-auto-long-one-rci,52.37
+base-auto-long-one-context,56.56
+base-auto-long-one-rci-context,56.54
+core-auto-long-one,52.58
+core-auto-long-one-rci,54.13
+extended-auto-long-one,52.72
+extended-auto-long-one-rci,52.72
+core-auto-long-one-context,51.47
+core-auto-long-one-rci-context,54.60
+extended-auto-long-one-context,41.36
+extended-auto-long-one-rci-context,46.80
+Average without context,52.76
+Average with context,51.22

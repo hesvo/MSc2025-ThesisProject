@@ -1,0 +1,28 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+private static void selectMediaSourceAndFinish(Context context, ComponentName componentName,
+        CarMediaManager carMediaManager) {
+    try {
+        carMediaManager.setMediaSource(componentName, CarMediaManager.MEDIA_SOURCE_MODE_BROWSE);
+        if (context instanceof Activity) {
+            ((Activity) context).finish();
+        }
+    } catch (CarNotConnectedException e) {
+        Log.e(TAG, "Car not connected", e);
+    }
+}
+
+**[Generated function code]**
+private static void selectMediaSourceAndFinish(Context context, ComponentName componentName, CarMediaManager carMediaManager) {
+    carMediaManager.setMediaSource(componentName);
+    if (context instanceof Activity) {
+        try {
+            ((Activity) context).finish();
+        } catch (CarNotConnectedException e) {
+            Log.e(TAG, "Car service unavailable", e);
+        }
+    }
+}

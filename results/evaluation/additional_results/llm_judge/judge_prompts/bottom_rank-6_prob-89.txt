@@ -1,0 +1,58 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+static int hv_shield_init(const struct device* dev) {
+  const struct hv_shield_config_t* config = dev->config;
+  struct hv_shield_data_t* data = dev->data;
+
+  int err = gpio_pin_configure_dt(&config->oe_gpio_spec, GPIO_OUTPUT_INACTIVE);
+  if (err) {
+    LOG_ERR("Error setting up Output enable pin (%d)", err);
+    return err;
+  }
+
+  memset(&data->registers, 0, sizeof(data->registers));
+
+  err = _hv_shield_update(dev);
+  if (err) {
+    LOG_ERR("Error writing registers (%d)", err);
+    return err;
+  }
+
+  err = gpio_pin_set_dt(&config->oe_gpio_spec, 1);
+  if (err) {
+    LOG_ERR("Error setting enabling output (%d)", err);
+  }
+
+  return err;
+}
+
+**[Generated function code]**
+static int hv_shield_init(const struct device* dev) {
+  int ret;
+
+  ret = gpio_config(dev->config->oe_gpio, GPIO_OUTPUT);
+  if (ret < 0) {
+    LOG_ERR("Failed to configure OE GPIO: %d\n", ret);
+    return ret;
+  }
+
+  ret = regulator_enable(dev->config->regulator);
+  if (ret < 0) {
+    LOG_ERR("Failed to enable regulator: %d\n", ret);
+    return ret;
+  }
+
+  memset(dev->regs, 0, sizeof(dev->regs));
+
+  ret = gpio_set(dev->config->oe_gpio, 1);
+  if (ret < 0) {
+    LOG_ERR("Failed to set OE pin: %d\n", ret);
+    regulator_disable(dev->config->regulator);
+    return ret;
+  }
+
+  return 0;
+}

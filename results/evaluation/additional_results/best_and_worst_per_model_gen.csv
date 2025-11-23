@@ -1,0 +1,14 @@
+Test name,CodeBLEU,N-gram,Weighted n-gram,Syntax,Dataflow
+base-auto-long-one-rci,41.53,31.1,32.3,47.78,54.95
+base-auto-long-three-rci,42.06,30.6,32.8,49.81,55.02
+base-short-zero,23.25,15.57,21.44,31.25,24.72
+core-auto-long-one-rci,41.18,30.66,31.88,48.56,53.61
+core-auto-long-three-rci,42.14,31.27,33.61,50.61,53.08
+core-xl-short-one,30.94,19.51,22.62,38.49,43.13
+core-xl-short-three,30.45,18.07,23,39.16,41.57
+core-short-zero,27.73,18.13,22.87,35.92,34.02
+core-short-zero-rci,27.9,18.07,22.97,36.07,34.47
+extended-auto-long-one-rci,40.62,27.15,31.4,48.88,55.04
+extended-auto-long-three,42.22,30.99,33.07,50.57,54.27
+extended-auto-long-three-rci,42.24,30.95,33.21,50.54,54.27
+extended-short-zero,26.01,17.57,21.57,34.37,30.51

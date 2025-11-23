@@ -1,0 +1,12 @@
+Your task is to implement a C function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related C function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Searches a predefined `id_mapping` array for a given CAN ID and returns its corresponding index, or `0xff` if the ID is not found"
+
+**Code:**
+static inline uint8_t map_from_can_id(uint32_t can_id) {

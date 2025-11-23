@@ -1,0 +1,35 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+bool DBusObjectManager::addToRegisteredObjectsTable(DBusInterfaceHandlerPath ifpath, std::shared_ptr<DBusInterfaceHandler> handler) {
+    auto handlerRecord = dbusRegisteredObjectsTable_.find(ifpath);
+    if (handlerRecord == dbusRegisteredObjectsTable_.end()) {
+        dbusRegisteredObjectsTable_.insert({
+            ifpath,
+            std::vector<std::shared_ptr<DBusInterfaceHandler>>({handler})
+        });
+    }
+    else {
+        std::vector<std::shared_ptr<DBusInterfaceHandler>> handlerList = handlerRecord->second;
+        auto adapter = find(handlerList.begin(), handlerList.end(), handler);
+        if (adapter != handlerList.end()) {
+            return false;
+        }
+        else {
+            handlerList.push_back(handler);
+            handlerRecord->second = handlerList;
+        }
+    }
+    return true;
+}
+
+**[Generated function code]**
+bool DBusObjectManager::addToRegisteredObjectsTable(DBusInterfaceHandlerPath ifpath, std::shared_ptr<DBusInterfaceHandler> handler) {
+    if (registeredObjectsTable_.count(ifpath)) {
+        return false;
+    }
+    registeredObjectsTable_[ifpath] = std::move(handler);
+    return true;
+}

@@ -1,0 +1,12 @@
+Your task is to implement a C function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related C function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Iterates through a pre-configured list of low-voltage GPIOs, setting the state of each pin enabled by an input mask to the corresponding bit in a value word, logging and returning an error if any underlying GPIO operation fails"
+
+**Code:**
+static int hvs_set_masked_raw(const struct device* port, gpio_port_pins_t mask, gpio_port_value_t value) {

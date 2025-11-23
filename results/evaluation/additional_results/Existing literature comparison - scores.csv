@@ -1,0 +1,18 @@
+Source,Dataset,Task,Domain,Code language(s),Metric,Score
+Zhu et al.,XLCoST,gen,general,"C++, Java, Python, C",CodeBLEU,39.45
+Zhu et al.,XLCoST,sum,general,"C++, Java, Python, C",BLEU,9.40
+Wang et al.,Concode,gen,general,Java,CodeBLEU,44.10
+Wang et al.,CSN,sum,general,"Python, Java",BLEU,20.41
+Gao et al.,CSN,sum,general,Java,BLEU,22.73
+Gao et al.,CSN,sum,general,Java,ROUGE-L,39.52
+Shi et al.,TL-CodeSum,sum,general,Java,BLEU,4.69
+Shi et al.,TL-CodeSum,sum,general,Java,ROUGE-L,22.93
+Gu et al.,HumanEval,gen,general,Python,CodeBLEU,30.05
+Gu et al.,CSN,gen,general,Go,CodeBLEU,25.29
+Gu et al.,UE,gen,game,C++,CodeBLEU,10.57
+Gu et al.,UE,gen,game,C++,CodeBLEU,18.35
+Gu et al.,Gin,gen,web,Go,CodeBLEU,17.73
+Gu et al.,Gin,gen,web,Go,CodeBLEU,27.04
+Ours,Custom,gen,auto,"C++, Java, Python, C",CodeBLEU,42.24
+Ours,Custom,sum,auto,"C++, Java, Python, C",BLEU,20.77
+Ours,Custom,sum,auto,"C++, Java, Python, C",ROUGE-L,45.2

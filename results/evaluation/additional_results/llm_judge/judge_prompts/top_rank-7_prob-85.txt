@@ -1,0 +1,24 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+static inline uint8_t map_from_can_id(uint32_t can_id) {
+  for (int i = 0; i < TRANSLATABLE_ADDRESSES_LEN; i++) {
+    if (id_mapping[i] == can_id) {
+      return i;
+    }
+  }
+
+  return 0xff;
+}
+
+**[Generated function code]**
+static inline uint8_t map_from_can_id(uint32_t can_id) {
+  for (uint8_t i = 0; i < ARRAY_SIZE(id_mapping); ++i) {
+    if (id_mapping[i].can_id == can_id) {
+      return i;
+    }
+  }
+  return 0xff;
+}

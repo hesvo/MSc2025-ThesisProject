@@ -1,0 +1,12 @@
+Your task is to implement a C function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related C function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Sets a GPIO output enable state, remapping the pin index by swapping the 4-bit nibbles within its byte"
+
+**Code:**
+static int hvs_set_gpio_output_enable(const struct device* dev, uint8_t index, bool enable) {

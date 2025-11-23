@@ -1,0 +1,12 @@
+Your task is to implement a Java function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Java function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Safely checks if a given activity is distraction-optimized, handling potential connection errors"
+
+**Code:**
+static boolean isActivityDistractionOptimized(CarPackageManager carPackageManager, String packageName, String activityName) {

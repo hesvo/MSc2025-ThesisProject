@@ -1,0 +1,81 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+def traverse_signal_tree(tree: VSSNode, fd: TextIOWrapper, static_uid: bool, add_optional: bool):
+    fd.write('syntax = "proto3";\n\n')
+
+    imports = []
+    for node in findall(tree, filter_=lambda n: isinstance(n.data, VSSDataDatatype)):
+        datatype = node.data.datatype
+        if "." not in datatype:
+            continue
+        struct_path = Path(node.data.datatype.replace(".", "/"))  # type: ignore
+        imports.append(f"{struct_path.parent}/{struct_path.parent.name}.proto")
+    write_imports(fd, imports)
+
+    # write proto messages to file
+    for node in findall(tree, filter_=lambda node: isinstance(node.data, VSSDataBranch)):
+        fd.write(f"message {node.get_fqn('')} {{" + "\n")
+        print_messages(node.children, fd, static_uid, add_optional)
+        fd.write("}\n\n")
+
+**[Generated function code]**
+```python
+def traverse_signal_tree(tree: VSSNode, fd: TextIOWrapper, static_uid: bool, add_optional: bool):
+    if tree.name == "signal":
+        fd.write(f"message {tree.name} {{")
+        if static_uid:
+            fd.write(f"\n    uint64 static_uid = 1;")
+        if add_optional:
+            fd.write(f"\n    optional uint64 uid = 2;")
+        else:
+            fd.write(f"\n    uint64 uid = 2;")
+        if tree.children:
+            for child in tree.children:
+                traverse_signal_tree(child, fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_group":
+        fd.write(f"message {tree.name} {{")
+        if tree.children:
+            for child in tree.children:
+                traverse_signal_tree(child, fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_group_list":
+        fd.write(f"repeated message {tree.children[0].name} {{")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_list":
+        fd.write(f"repeated message {tree.children[0].name} {{")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_array":
+        fd.write(f"repeated message {tree.children[0].name} {{")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_struct":
+        fd.write(f"message {tree.name} {{")
+        if tree.children:
+            for child in tree.children:
+                traverse_signal_tree(child, fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_struct_list":
+        fd.write(f"repeated message {tree.children[0].name} {{")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_struct_array":
+        fd.write(f"repeated message {tree.children[0].name} {{")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_union":
+        fd.write(f"message {tree.name} {{")
+        if tree.children:
+            for child in tree.children:
+                traverse_signal_tree(child, fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name == "signal_union_list":
+        fd.write(f"repeated message {tree.children[0].name} {{")
+        traverse_signal_tree(tree.children[0], fd, static_uid, add_optional)
+        fd.write("\n}")
+    elif tree.name

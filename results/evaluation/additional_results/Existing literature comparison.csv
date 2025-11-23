@@ -1,0 +1,18 @@
+Source,Model,Dataset,Task,Domain,Code language(s),Evaluation metric,Score
+Zhu et al.,CodeT5,XLCoST,generation,general,"C++, Java, Python, C",CodeBLEU,39.45
+Zhu et al.,CodeT5,XLCoST,summarization,general,"C++, Java, Python, C",BLEU,9.40
+Wang et al.,CodeT5,Concode,generation,general,Java,CodeBLEU,44.10
+Wang et al.,CodeT5,CodeSearchNet,summarization,general,"Python, Java",BLEU,20.41
+Gao et al.,Codex,CodeSearchNet,summarization,general,Java,BLEU,22.73
+Gao et al.,Codex,CodeSearchNet,summarization,general,Java,ROUGE-L,39.52
+Shi et al.,SoTaNa-30B (Llama base model),TL-CodeSum,summarization,general,Java,BLEU,4.69
+Shi et al.,SoTaNa-30B (Llama base model),TL-CodeSum,summarization,general,Java,ROUGE-L,22.93
+Gu et al.,ChatGPT-3.5-154B,HumanEval,generation,general,Python,CodeBLEU,30.05
+Gu et al.,ChatGPT-3.5-154B,CodeSearchNet,generation,general,Go,CodeBLEU,25.29
+Gu et al.,ChatGPT-3.5-154B,Unreal Engine,generation,game dev,C++,CodeBLEU,10.57
+Gu et al.,ChatGPT-3.5-154B (with prompt engineering),Unreal Engine,generation,game dev,C++,CodeBLEU,18.35
+Gu et al.,ChatGPT-3.5-154B,Gin,generation,web dev,Go,CodeBLEU,17.73
+Gu et al.,ChatGPT-3.5-154B (with prompt engineering),Gin,generation,web dev,Go,CodeBLEU,27.04
+Ours,Gemma-3 12B (adapted),Custom,generation,automotive,"C++, Java, Python, C",CodeBLEU,42.24
+Ours,Gemma-3 12B (base),Custom,summarization,automotive,"C++, Java, Python, C",BLEU,20.77
+Ours,Gemma-3 12B (adapted),Custom,summarization,automotive,"C++, Java, Python, C",ROUGE-L,45.2

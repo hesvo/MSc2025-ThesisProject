@@ -1,0 +1,76 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+def traverse_signal_tree(tree: VSSNode, fd: TextIOWrapper, static_uid: bool, add_optional: bool):
+    fd.write('syntax = "proto3";\n\n')
+
+    imports = []
+    for node in findall(tree, filter_=lambda n: isinstance(n.data, VSSDataDatatype)):
+        datatype = node.data.datatype
+        if "." not in datatype:
+            continue
+        struct_path = Path(node.data.datatype.replace(".", "/"))  # type: ignore
+        imports.append(f"{struct_path.parent}/{struct_path.parent.name}.proto")
+    write_imports(fd, imports)
+
+    # write proto messages to file
+    for node in findall(tree, filter_=lambda node: isinstance(node.data, VSSDataBranch)):
+        fd.write(f"message {node.get_fqn('')} {{" + "\n")
+        print_messages(node.children, fd, static_uid, add_optional)
+        fd.write("}\n\n")
+
+**[Generated function code]**
+def traverse_signal_tree(tree: VSSNode, fd: TextIOWrapper, static_uid: bool, add_optional: bool):
+    if tree.name == "signal":
+        fd.write(f"  {tree.name} {{")
+        if add_optional:
+            fd.write(" optional")
+        fd.write("\n")
+        for child in tree.children:
+            if child.name == "uid":
+                fd.write(f"    uint32 {child.name} = 1;")
+                if add_optional:
+                    fd.write(" optional")
+                fd.write(";\n")
+            elif child.name == "timestamp":
+                fd.write(f"    uint64 {child.name} = 2;")
+                if add_optional:
+                    fd.write(" optional")
+                fd.write(";\n")
+            elif child.name == "data":
+                fd.write(f"    {get_data_type(child)} {child.name} = 3;")
+                if add_optional:
+                    fd.write(" optional")
+                fd.write(";\n")
+        fd.write("  }\n")
+    else:
+        for child in tree.children:
+            traverse_signal_tree(child, fd, static_uid, add_optional)
+
+def get_data_type(node: VSSNode) -> str:
+    if node.name == "int8":
+        return "int32"
+    elif node.name == "uint8":
+        return "uint32"
+    elif node.name == "int16":
+        return "int32"
+    elif node.name == "uint16":
+        return "uint32"
+    elif node.name == "int32":
+        return "int32"
+    elif node.name == "uint32":
+        return "uint32"
+    elif node.name == "int64":
+        return "int64"
+    elif node.name == "uint64":
+        return "uint64"
+    elif node.name == "float":
+        return "float"
+    elif node.name == "double":
+        return "double"
+    elif node.name == "string":
+        return "string"
+    else:
+        return "bytes

@@ -1,0 +1,12 @@
+Your task is to implement a C function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related C function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Constructs and sends a 3-byte UDS negative response message (containing the original request SID and a negative response code) over a CAN bus using the ISO-TP protocol, logging an error if the transmission fails"
+
+**Code:**
+void send_negative_response(enum UDS_SID request_sid, enum UDS_NRC response_code) {

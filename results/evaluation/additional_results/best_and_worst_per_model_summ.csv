@@ -1,0 +1,22 @@
+Test name,BLEU,ROUGE-1,ROUGE-2,ROUGE-L,BERTScore
+base-auto-long-one-rci,20.77,53.89,26.44,43.55,75.23
+base-xl-short-one,10.75,46.89,19.95,39.98,75.79
+base-xl-short-three-rci,7.28,44.12,16.5,38.11,74.71
+base-long-zero,11.16,46.91,17.91,35.41,70.94
+base-long-zero-rci,11.66,45.89,17.55,34.64,71.25
+base-short-zero-rci,7.28,42.36,17.46,36.26,72.93
+core-auto-long-one,18.99,52.58,24.52,42.19,74.27
+core-auto-long-one-rci,18.47,52.98,25.28,42.94,74.64
+core-auto-short-three,15.78,51.32,27.35,44.86,74.87
+core-xl-long-three,9.89,45.67,17.56,35.99,70.96
+core-xl-short-one,13.97,48.25,22.98,42.56,76.53
+core-short-zero,8.97,43.51,19.48,37.63,73.73
+core-short-zero-rci,8.06,44.57,19.61,38.09,73.87
+extended-auto-long-one,20.46,53.31,26.61,43.15,74.42
+extended-auto-long-one-rci,20.07,54.2,27.42,43.86,74.73
+extended-auto-short-one,14.25,51.45,25.89,44.33,76.35
+extended-auto-short-three,15.1,51.72,27.8,45.2,74.92
+extended-xl-long-three,10.84,47.77,19.22,37.36,71.36
+extended-xl-short-three,11.88,42.76,19.3,37.76,73.82
+extended-long-zero-rci,12.96,47.4,19.57,37.3,72.14
+extended-short-zero,8.91,44.22,19.84,38.75,73.65

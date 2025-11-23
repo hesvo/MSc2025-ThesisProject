@@ -1,0 +1,12 @@
+Your task is to implement a Cpp function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Cpp function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"A callback to stop monitoring a D-Bus watch and clean up its associated data"
+
+**Code:**
+void DBusConnection::onRemoveWatch(::DBusWatch* libdbusWatch, void* data) {

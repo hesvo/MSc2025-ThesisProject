@@ -1,0 +1,49 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+private Intent getMapsIntent() {
+    Intent defaultIntent =
+            Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_MAPS);
+    PackageManager pm = getPackageManager();
+    ComponentName defaultActivity = defaultIntent.resolveActivity(pm);
+
+    for (String intentUri : getResources().getStringArray(
+            R.array.config_homeCardPreferredMapActivities)) {
+        Intent preferredIntent;
+        try {
+            preferredIntent = Intent.parseUri(intentUri, Intent.URI_ANDROID_APP_SCHEME);
+        } catch (URISyntaxException se) {
+            Log.w(TAG, "Invalid intent URI in config_homeCardPreferredMapActivities", se);
+            continue;
+        }
+
+        if (defaultActivity != null && !defaultActivity.getPackageName().equals(
+                preferredIntent.getPackage())) {
+            continue;
+        }
+
+        if (preferredIntent.resolveActivityInfo(pm, /* flags= */ 0) != null) {
+            return preferredIntent;
+        }
+    }
+    return defaultIntent;
+}
+
+**[Generated function code]**
+private Intent getMapsIntent() {
+        Intent mapsIntent = null;
+        if (mResolvableMapIntents != null) {
+            for (Intent intent : mResolvableMapIntents) {
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    mapsIntent = intent;
+                    break;
+                }
+            }
+        }
+        if (mapsIntent == null) {
+            mapsIntent = new Intent(Intent.ACTION_VIEW);
+        }
+        return mapsIntent;
+    }

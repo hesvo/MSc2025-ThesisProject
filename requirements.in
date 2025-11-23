@@ -1,0 +1,24 @@
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+torch
+torchvision
+
+huggingface-hub
+transformers
+accelerate
+evaluate
+bitsandbytes
+peft
+nltk
+python-dotenv
+detect-secrets
+datasketch
+tqdm
+sacrebleu
+rouge_score
+bert-score
+codebleu
+tree-sitter-python==0.21
+tree-sitter-java==0.21
+tree-sitter-c==0.21
+tree-sitter-cpp==0.21

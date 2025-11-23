@@ -1,0 +1,5 @@
+test_name,language,corpus_codebleu,corpus_ngram_match_score,corpus_weighted_ngram_match_score,corpus_syntax_match_score,corpus_dataflow_match_score
+adapted_12b_core-auto-long-one,average,51.47,42.20,43.25,59.21,61.24
+adapted_12b_core-auto-long-one-rci,average,54.60,46.18,47.47,61.62,63.11
+adapted_12b_extended-auto-long-one,average,41.36,32.30,34.01,53.92,45.21
+adapted_12b_extended-auto-long-one-rci,average,46.80,38.55,39.77,57.40,51.49

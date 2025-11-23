@@ -1,0 +1,21 @@
+Model-language,avg no. RCI different,avg percentage different
+base_c,21.60,98.18
+base_cpp,21.70,98.64
+base_java,21.80,99.09
+base_python,21.90,99.55
+base_all_languages,21.75,98.86
+core_c,16.70,75.91
+core_cpp,20.20,91.82
+core_java,19.50,88.64
+core_python,19.10,86.82
+core_all_languages,18.88,85.80
+extended_c,12.10,55.00
+extended_cpp,14.20,64.55
+extended_java,14.40,65.45
+extended_python,16.20,73.64
+extended_all_languages,14.22,64.66
+average_c,16.80,76.36
+average_cpp,18.70,85.00
+average_java,18.57,84.39
+average_python,19.07,86.67
+average_all_languages,18.28,83.11

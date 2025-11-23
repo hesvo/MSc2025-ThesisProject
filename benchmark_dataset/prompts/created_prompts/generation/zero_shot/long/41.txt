@@ -1,0 +1,12 @@
+Your task is to implement a Java function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Java function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Parses the mode from the current Intent and sets the title for both the Activity and the CarUi toolbar using the string resource ID defined in that mode"
+
+**Code:**
+private void updateMode() {

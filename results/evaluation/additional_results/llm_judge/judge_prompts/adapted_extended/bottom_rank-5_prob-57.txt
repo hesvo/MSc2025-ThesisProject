@@ -1,0 +1,47 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+void DBusConnection::onToggleWatch(::DBusWatch* libdbusWatch, void* data) {
+    WatchContext* watchContext = static_cast<WatchContext*>(data);
+
+    if (NULL == watchContext) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), "watchContext == NULL");
+        return;
+    }
+
+    DBusWatch* dbusWatch = static_cast<DBusWatch*>(dbus_watch_get_data(libdbusWatch));
+
+    if (dbusWatch == NULL) {
+        DBusWatch* dbusWatch = new DBusWatch(libdbusWatch, watchContext->mainLoopContext_, watchContext->dbusConnection_);
+        dbusWatch->addDependentDispatchSource(watchContext->dispatchSource_);
+        dbus_watch_set_data(libdbusWatch, dbusWatch, NULL);
+
+        if (dbusWatch->isReadyToBeWatched()) {
+            dbusWatch->startWatching();
+        }
+    } else {
+        if (!dbusWatch->isReadyToBeWatched()) {
+            dbusWatch->stopWatching();
+            dbus_watch_set_data(libdbusWatch, NULL, NULL);
+        } else {
+            dbusWatch->startWatching();
+        }
+    }
+}
+
+**[Generated function code]**
+void DBusConnection::onToggleWatch(::DBusWatch* libdbusWatch, void* data) {
+    if (!libdbusWatch) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), "libdbusWatch == nullptr");
+        return;
+    }
+
+    auto watch = std::static_pointer_cast<DBusWatch>(std::shared_ptr<DBusWatch>(libdbusWatch));
+    if (watch->isReady()) {
+        watch->start();
+    } else {
+        watch->stop();
+    }
+}

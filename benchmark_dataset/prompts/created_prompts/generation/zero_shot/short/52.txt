@@ -1,0 +1,12 @@
+Your task is to implement a Cpp function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Cpp function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Creates a D-Bus signal message addressed to a specific client"
+
+**Code:**
+DBusMessage DBusClientId::createMessage(const std::string objectPath, const std::string interfaceName, const std::string signalName) const {

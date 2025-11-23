@@ -1,0 +1,12 @@
+Your task is to implement a Java function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Java function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Initializes a `TaskViewManager` to asynchronously create a `TaskView`, which upon creation is configured with a listener, added to the parent `ViewGroup`, and stored as a member variable"
+
+**Code:**
+private void setUpTaskView(ViewGroup parent) {

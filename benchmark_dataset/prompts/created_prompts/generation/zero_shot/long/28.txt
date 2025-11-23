@@ -1,0 +1,12 @@
+Your task is to implement a Java function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Java function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Inflates the `card_fragment` layout, finds and assigns the card's title and icon views, and returns the resulting root view"
+
+**Code:**
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

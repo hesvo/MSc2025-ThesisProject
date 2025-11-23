@@ -1,0 +1,20 @@
+Your task is to implement a <code language> function based on a summary.
+Below is an example of generating a <code language> function from a summary.
+
+---
+
+**[Example]**
+<generation example>
+
+---
+
+**[Target]**
+**Use the summary below to generate the related <code language> function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"<target summary>"
+
+**Code:**
+<function signature>

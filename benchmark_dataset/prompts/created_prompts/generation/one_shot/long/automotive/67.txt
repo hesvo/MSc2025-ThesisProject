@@ -1,0 +1,38 @@
+Your task is to implement a Cpp function based on a summary.
+Below is an example of generating a Cpp function from a summary.
+
+---
+
+**[Example]**
+**Summary:**
+"Sends a given `DBusMessage` over an established D-Bus connection, returning `true` on success and `false` if the message is invalid, the connection is down, or the underlying send operation fails”
+
+**Code:**
+bool DBusConnection::sendDBusMessage(const DBusMessage &_message) const {
+    if (!_message) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), "message == NULL");
+        return false;
+    }
+    if (!isConnected()) {
+        COMMONAPI_ERROR(std::string(__FUNCTION__), "not connected");
+        return false;
+    }
+
+    dbus_uint32_t dbusSerial;
+    const bool result = (0 != dbus_connection_send(connection_, _message.message_, &dbusSerial));
+    return result;
+}
+
+
+---
+
+**[Target]**
+**Use the summary below to generate the related Cpp function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Handles a D-Bus "InterfacesRemoved" signal by parsing the object path and interface names, and for any interface matching the one being observed, notifies listeners that its status has changed to "NOT_AVAILABLE""
+
+**Code:**
+void DBusInstanceAvailabilityStatusChangedEvent::onInterfacesRemovedSignal(const DBusMessage &_message) {

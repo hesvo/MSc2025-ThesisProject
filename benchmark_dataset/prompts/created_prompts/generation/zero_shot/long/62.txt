@@ -1,0 +1,12 @@
+Your task is to implement a Cpp function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Cpp function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Thread-safely notifies all registered signal handlers of a successful state by invoking their `onSpecificError` callback with a `SUCCESS` status for each associated signal tag"
+
+**Code:**
+void DBusConnection::handleSignalStates() {

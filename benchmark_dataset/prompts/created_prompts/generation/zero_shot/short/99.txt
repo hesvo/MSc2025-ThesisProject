@@ -1,0 +1,12 @@
+Your task is to implement a C function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related C function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Sets the active schedule table for a LIN scheduler and resets its position to the beginning"
+
+**Code:**
+int abstract_lin_scheduler_set_active_table(

@@ -1,0 +1,28 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+void DBusConnection::deleteAsyncHandlers() {
+    std::vector<DBusMessageReplyAsyncHandler*> asyncHandlers;
+    {
+        std::lock_guard<std::mutex> asyncHandlersLock(asyncHandlersToDeleteMutex_);
+        asyncHandlers = asyncHandlersToDelete_;
+        asyncHandlersToDelete_.clear();
+    }
+
+    auto it = asyncHandlers.begin();
+    while(it != asyncHandlers.end()) {
+        delete *it;
+        it = asyncHandlers.erase(it);
+    }
+}
+
+**[Generated function code]**
+void DBusConnection::deleteAsyncHandlers() {
+    std::lock_guard<std::mutex> lock(asyncHandlersMutex_);
+    for (auto handler : asyncHandlers_) {
+        delete handler;
+    }
+    asyncHandlers_.clear();
+}

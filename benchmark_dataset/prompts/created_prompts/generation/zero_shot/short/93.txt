@@ -1,0 +1,12 @@
+Your task is to implement a C function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related C function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Registers a set of rules to route CAN frames between specified interfaces"
+
+**Code:**
+int can_router_register(const struct can_router_entry_t *entries, int entry_count) {

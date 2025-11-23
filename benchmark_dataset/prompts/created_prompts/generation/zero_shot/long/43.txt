@@ -1,0 +1,12 @@
+Your task is to implement a Java function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Java function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Lazily inflates a media layout from a `ViewStub`, finds and caches its title and subtitle views, initializes its media playback controls bar via a presenter, and returns the inflated view"
+
+**Code:**
+private View getMediaLayoutView() {

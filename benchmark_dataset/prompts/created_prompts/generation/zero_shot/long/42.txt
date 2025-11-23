@@ -1,0 +1,12 @@
+Your task is to implement a Java function based on a summary.
+
+**[Target]**
+**Use the summary below to generate the related Java function**
+Return the full target function code, including function signature and function implementation
+Do NOT add comments to the code and provide only the code as output
+
+**Summary:**
+"Lazily initializes and returns a `Chronometer` by finding it in the layout, while also finding and caching its associated separator view on the first call"
+
+**Code:**
+private Chronometer getChronometer() {

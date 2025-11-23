@@ -1,0 +1,17 @@
+You are provided with a reference code function and a generated code function below.
+Evaluate the code and return a score from 1-10 to rate the functional correctness of the generated function code compared to the reference code.
+Return only the rating result.
+
+**[Reference function code]**
+public void onCallAdded(Call call) {
+    if (call != null) {
+        call.registerCallback(mCallback);
+    }
+}
+
+**[Generated function code]**
+public void onCallAdded(Call call) {
+    if (call != null) {
+        call.registerCallback(mCallCallback);
+    }
+}
