@@ -24,7 +24,7 @@ Create a new folder (e.g. `/repositories/test_repos`) to separate the held-out t
 Ensure you are in the repository root and run the following scripts to process the repositories into the training dataset:
 
 **Filtering**
-Run (use `core` argument for "Core" (code only) dataset and `extended` for "Extended" (documentation files included) dataset) :
+Run (use `core` argument for "Core" (code only) dataset and `extended` for "Extended" (documentation files included) dataset):
 `python scripts/data_preparation/01_filter_repositories.py <core|extended> <all>`
 
 **Processing (heuristic filtering, boilerplate removal, PII redaction)**
