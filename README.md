@@ -1,3 +1,4 @@
+## MSc Thesis Project - Adaptation of Large Language Models for the Automotive Software Engineering Domain
 This repository provides the code and processed results for my Master thesis on the topic "Adaptation of Large Language Models for the Automotive Software Engineering Domain". All scripts used in the experimental pipeline are included for replicability of the results, which requires a combination of script input arguments and editing constants in the files themselves to specify datasets/paths to be used. Certain scripts should be run from the project root while others require navigating to the relevant folder. Explanations for running the scripts is provided below.
 
 ### Cloning and setup
