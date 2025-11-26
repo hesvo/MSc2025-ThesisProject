@@ -28,8 +28,8 @@ else:
 
 def validate_arguments(args):
     if len(args) < 4:
-        print("Usage: python run_summarization_evaluation.py <xl|auto> <summary_length> <shot_count> [subset]")
-        print("Example: python run_summarization_evaluation.py xl short one")
+        print("Usage: python evaluation_summarization.py <xl|auto> <summary_length> <shot_count> [subset]")
+        print("Example: python evaluation_summarization.py xl short one")
         sys.exit(1)
 
     source, summary_length, shot_count, subset = args[1], args[2], args[3], args[4] if len(args) == 5 else None
