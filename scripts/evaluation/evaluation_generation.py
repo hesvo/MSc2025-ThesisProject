@@ -30,8 +30,8 @@ else:
 
 def validate_arguments(args):
     if len(args) < 4:
-        print("Usage: python run_generation_evaluation.py <source> <summary_length> <shot_count> [subset]")
-        print("Example: python run_generation_evaluation.py xl short zero")
+        print("Usage: python evaluation_generation.py <source> <summary_length> <shot_count> [subset]")
+        print("Example: python evaluation_generation.py xl short zero")
         sys.exit(1)
 
     source, summary_length, shot_count, subset = args[1], args[2], args[3], args[4] if len(args) == 5 else None
